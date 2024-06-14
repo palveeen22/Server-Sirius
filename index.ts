@@ -1,36 +1,30 @@
-// const express = require("express");
-// const app = express();
-// const http = require("http");
-// const cors = require("cors");
-// const { Server } = require("socket.io");
-// app.use(cors());
+import express from "express";
+import cors from "cors";
+import dotenv from "dotenv";
+import router from "./API/Routes/route";
+dotenv.config();
 
-// const server = http.createServer(app);
+// import FarmerRoute from "./api/Routes/farmerRoute";
+// import { authMiddleware } from "./api/middleware/auth";
 
-// const io = new Server(server, {
-// 	cors: {
-// 		origin: "http://localhost:3000",
-// 		methods: ["GET", "POST"],
-// 	},
-// });
 
-// io.on("connection", (socket) => {
-// 	console.log(`User Connected: ${socket.id}`);
 
-// 	socket.on("join_room", (data) => {
-// 		socket.join(data);
-// 		console.log(`User with ID: ${socket.id} joined room: ${data}`);
-// 	});
+const PORT = process.env.APP_PORT || 3000;
 
-// 	socket.on("send_message", (data) => {
-// 		socket.to(data.room).emit("receive_message", data);
-// 	});
+const app = express();
 
-// 	socket.on("disconnect", () => {
-// 		console.log("User Disconnected", socket.id);
-// 	});
-// });
 
-// server.listen(3001, () => {
-// 	console.log("SERVER RUNNING  🚀");
-// });
+app.use(cors());
+app.use(express.json());
+
+
+// // authentication
+// app.use(authMiddleware);
+
+// index routers
+app.use(router);
+
+
+app.listen(PORT, () =>
+  console.log(`⚡️[server]: Server is running at ${PORT}`)
+)
