@@ -3,10 +3,8 @@ import tryCatch from "../../Libs/helpers/tryAndCatch";
 import UserController from "../../Controllers/UserController";
 
 
-const UserRouter = express.Router();
+const AuthRouter = express.Router();
 
+AuthRouter.post("/v.1/login", tryCatch(UserController.login))
 
-UserRouter.get("/v.1/listUsers", tryCatch(UserController.getAllFarmers))
-
-
-export default UserRouter;
+export default AuthRouter
