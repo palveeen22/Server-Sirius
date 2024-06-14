@@ -5,6 +5,17 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+
+interface LoginInfo {
+  userId: number;
+  email: string;
+  role: number;
+}
+
+export interface AppRequest extends Request {
+  loginInfo?: LoginInfo;
+}
+
 declare global {
   namespace Express {
     interface Request {
@@ -22,7 +33,7 @@ interface CustomJwtPayload extends JwtPayload {
 }
 
 export async function authMiddleware(
-  req: Request,
+  req: AppRequest,
   res: Response,
   next: NextFunction
 ) {
@@ -44,11 +55,12 @@ export async function authMiddleware(
       return res.status(401).json({ message: "Unauthorized" });
     }
 
-    req.loginInfo = {
+   req.loginInfo = {
       userId: user.id,
       email: user.email,
       role: user.role,
     };
+
 
     next();
   } catch (error) {

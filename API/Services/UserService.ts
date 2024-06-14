@@ -37,6 +37,15 @@ class UserService {
 		}
 	}
 
+	static async GetMe(id: number) {
+		return await prisma.user.findUnique({
+			where: {
+				id: id,
+			},
+			include: { UserDetail: true },
+		});
+	}
+
 	// create user new
 	static async CreateUser() {}
 
