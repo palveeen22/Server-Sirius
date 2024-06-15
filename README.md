@@ -15,7 +15,9 @@
    </br>
 
 APP_PORT= `YOUR PORT CONNECTION`
+ </br>
 JWT_SECRET= `YOUR SECREAT`
+ </br>
    
  3. Connect your database
    `postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=SCHEMA`
