@@ -2,10 +2,8 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import router from "./API/Routes/route";
+import { authMiddleware } from "./API/Middlewares/auth";
 dotenv.config();
-
-// import FarmerRoute from "./api/Routes/farmerRoute";
-// import { authMiddleware } from "./api/middleware/auth";
 
 
 
@@ -18,11 +16,9 @@ app.use(cors());
 app.use(express.json());
 
 
-// // authentication
-// app.use(authMiddleware);
 
 // index routers
-app.use(router);
+app.use("/api",router);
 
 
 app.listen(PORT, () =>
