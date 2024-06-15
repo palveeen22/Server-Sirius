@@ -1,11 +1,16 @@
 import express from "express";
 import AuthRouter from "./AuthRoute";
 import UserRouter from "./UserRoute";
+import { authMiddleware } from "../Middlewares/auth";
 const router = express.Router();
 
 
 router.use('/auth', AuthRouter);
-router.use('/user', UserRouter);
+// authentication
+// app.use();
+
+
+router.use('/user',authMiddleware, UserRouter);
 
 
 

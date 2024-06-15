@@ -16,8 +16,6 @@ app.use(cors());
 app.use(express.json());
 
 
-// // authentication
-// app.use(authMiddleware);
 
 // index routers
 app.use("/api",router);
