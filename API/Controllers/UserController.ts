@@ -7,7 +7,6 @@ class UserController {
 	static async login(req: Request, res: Response): Promise<Response> {
 		const { email, password } = req.body;
 
-		console.log("<<<<<");
 
 		if (!email || !password) {
 			throw new AppError(400, "Email and password are required", 400);

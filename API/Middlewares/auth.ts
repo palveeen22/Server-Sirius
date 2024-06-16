@@ -56,7 +56,6 @@ export async function authMiddleware(
 			include: { UserDetail: true },
     });
     
-    console.log(user, "<<<<XXX");
 
 		if (!user) {
 			return res.status(401).json({ message: "Unauthorized" });
@@ -68,7 +67,6 @@ export async function authMiddleware(
 			role: user.role,
     };
     
-    console.log(req.loginInfo, "<<MEMEK");
 
 		next();
 	} catch (error) {
